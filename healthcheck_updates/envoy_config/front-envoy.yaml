@@ -1,0 +1,17 @@
+dynamic_resources:
+  lds_config:
+    path: /etc/envoy/listeners.yaml
+  cds_config:
+    path: /etc/envoy/clusters.yaml
+
+
+admin:
+  access_log_path: "/dev/null"
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 8001
+
+node:
+  id: front-envoy.example.com
+  cluster: generic

@@ -1,0 +1,20 @@
+resources:
+- "@type": "type.googleapis.com/envoy.api.v2.Cluster"
+  name: service1
+  type: EDS
+  connect_timeout: 0.2s
+  eds_cluster_config:
+    eds_config:
+      path: /tmp/envoy/endpoints/service1.yaml
+  health_checks:
+  - timeout: 10s
+    interval: 10s
+    healthy_threshold: 1
+    unhealthy_threshold: 2
+    unhealthy_interval: 5s
+    unhealthy_edge_interval: 5s
+    healthy_edge_interval: 5s
+    no_traffic_interval: 60s
+    http_health_check:
+      path: /status
+      use_http2: false
