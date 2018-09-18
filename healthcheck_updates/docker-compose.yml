@@ -27,5 +27,17 @@ services:
     expose:
       - "80"
 
+  service2:
+    build:
+      context: .
+      dockerfile: Dockerfile-service
+    networks:
+      envoymesh:
+        aliases:
+          - service2
+    expose:
+      - "80"
+
+
 networks:
   envoymesh: {}

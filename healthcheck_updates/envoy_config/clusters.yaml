@@ -3,6 +3,7 @@ resources:
   name: service1
   type: EDS
   connect_timeout: 0.2s
+  drain_connections_on_host_removal: true
   eds_cluster_config:
     eds_config:
       path: /tmp/envoy/endpoints/service1.yaml
