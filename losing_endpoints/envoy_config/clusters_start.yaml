@@ -1,0 +1,16 @@
+resources:
+- "@type": "type.googleapis.com/envoy.api.v2.Cluster"
+  name: service1
+  type: EDS
+  connect_timeout: 0.2s
+  eds_cluster_config:
+    eds_config:
+      path: /tmp/envoy/endpoints/service1.yaml
+  outlier_detection:
+    max_ejection_percent: 25
+    enforcing_consecutive_5xx: 100
+    consecutive_5xx: 2
+    enforcing_success_rate: 0
+    enforcing_consecutive_gateway_failure: 0
+  common_lb_config:
+    healthy_panic_threshold: {value: 0.0}

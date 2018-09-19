@@ -1,0 +1,43 @@
+version: '2'
+services:
+
+  front-envoy:
+    build:
+      context: .
+      dockerfile: Dockerfile-frontenvoy
+    volumes:
+      - ./envoy_config/:/etc/envoy/:ro
+    networks:
+      - envoymesh
+    expose:
+      - "80"
+      - "8001"
+    ports:
+      - "8000:80"
+      - "8001:8001"
+
+  service1_1:
+    build:
+      context: .
+      dockerfile: Dockerfile-service
+    networks:
+      envoymesh:
+        aliases:
+          - service1_1
+    expose:
+      - "80"
+
+  service1_2:
+    build:
+      context: .
+      dockerfile: Dockerfile-service
+    networks:
+      envoymesh:
+        aliases:
+          - service1_2
+    expose:
+      - "80"
+
+
+networks:
+  envoymesh: {}

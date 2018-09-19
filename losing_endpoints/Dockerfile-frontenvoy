@@ -1,0 +1,15 @@
+FROM envoyproxy/envoy:176500ae3c8b9ce0868ef28119b207e8f67b9087
+
+RUN apt-get update && apt-get -q install -y \
+    curl \
+    dumb-init \
+    bind9-host
+
+RUN mkdir /code
+RUN mkdir -p /tmp/envoy/endpoints/
+
+ADD ./start_envoy.sh /code/start_envoy.sh
+ADD ./config_update_start.sh  /code/config_update_start.sh
+ADD ./config_update_new.sh  /code/config_update_new.sh
+
+CMD /code/start_envoy.sh
