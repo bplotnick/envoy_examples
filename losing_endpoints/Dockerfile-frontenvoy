@@ -1,4 +1,4 @@
-FROM envoyproxy/envoy:176500ae3c8b9ce0868ef28119b207e8f67b9087
+FROM envoyproxy/envoy:latest
 
 RUN apt-get update && apt-get -q install -y \
     curl \
